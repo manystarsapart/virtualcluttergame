@@ -76,8 +76,6 @@ const sentimentPoints = {
     "trinkets": 60
 };
 
-let playerOneName = document.getElementById("player-one-name");
-let playerTwoName = document.getElementById("player-two-name");
 let setupForm = document.getElementById("setup-form");
 let setupDiv = document.getElementById("setup-div");
 
@@ -111,12 +109,7 @@ function startTurn(player) {
 function initialiseGame() {
     setupDiv.classList.remove("block");
     setupDiv.classList.add("hidden");
-    playerOneName.classList.remove("hidden");
-    playerTwoName.classList.remove("hidden");
-    let playfields = document.getElementsByClassName("playfields");
-    for (var i = 0; i < playfields.length; i++) {
-        playfields[i].classList.remove("hidden");
-    }
+    
 
     const drawPile = [
         ...stratagems,
@@ -132,26 +125,35 @@ function initialiseGame() {
     let playerThreeNameInput = document.getElementById("player-three-name-input").value;
     let playerFourNameInput = document.getElementById("player-four-name-input").value;
 
+    let playerOneName = document.getElementById("player-one-name");
+    let playerTwoName = document.getElementById("player-two-name");
+    let playerThreeName = document.getElementById("player-three-name");
+    let playerFourName = document.getElementById("player-four-name");
+
     const player1 = new Player(playerOneNameInput);
-    const player2 = new Player(playerTwoNameInput);
-    
-    if (playerThreeNameInput != null) {const player3 = new Player(playerThreeNameInput)};
-    if (playerThreeNameInput != null) {const player4 = new Player(playerFourNameInput)};
-
     playerOneName.innerText = player1.name;
+    document.getElementById("playfield-1").classList.remove("hidden");
+
+    const player2 = new Player(playerTwoNameInput);
     playerTwoName.innerText = player2.name;
-    if (player3) {
+    document.getElementById("playfield-2").classList.remove("hidden");
+
+    let player3, player4;
+
+    if (playerThreeNameInput) {
+        player3 = new Player(playerThreeNameInput);
         playerThreeName.innerText = player3.name;
-// TODO: MAKE DIV NOT HIDDEN HERE
-    }
-    if (player4) {
+        document.getElementById("playfield-3").classList.remove("hidden");
+    };
+
+    if (playerFourNameInput) {
+        player4 = new Player(playerFourNameInput);
         playerFourName.innerText = player4.name;
-// TODO: MAKE DIV NOT HIDDEN HERE
-    }
+        document.getElementById("playfield-4").classList.remove("hidden");
+    };
 
-
-    console.log(player1); // Player { name: 'Alice', index: 0, points: 0, hand: [], clearedClutter: [], nextClutterMultiplier: 1, diceRoll: 0 }
-    console.log(player2); // Player { name: 'Bob', index: 1, points: 0, hand: [], clearedClutter: [], nextClutterMultiplier: 1, diceRoll: 0 }
+    // console.log(player1); // Player { name: 'Alice', index: 0, points: 0, hand: [], clearedClutter: [], nextClutterMultiplier: 1, diceRoll: 0 }
+    // console.log(player2); // Player { name: 'Bob', index: 1, points: 0, hand: [], clearedClutter: [], nextClutterMultiplier: 1, diceRoll: 0 }
 
     // player1.rollDice();
     // console.log(`Player ${player1.name} rolled a ${player1.diceRoll}`); 
