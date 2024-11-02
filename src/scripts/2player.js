@@ -1,0 +1,1 @@
+// assume only player1 and player2 are assigned Player objects

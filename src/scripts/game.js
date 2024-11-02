@@ -1,3 +1,12 @@
+import * as misc from "./misc.js";
+
+document.addEventListener("DOMContentLoaded", function() {
+    misc.updateStatusDiv("awaiting name input...");
+    misc.updateStatusDiv("");
+});
+
+
+
 let drawPile = [];
 let discardPile = [];
 
@@ -99,26 +108,34 @@ Player.prototype.rollDice = function() {
     this.even = this.diceRoll % 2 === 0 ? 1 : 0; 
 };
 
-
-function startTurn(player) {
-    let activePlayer = player;
+function drawCard(count) {
+    let drawnCards = [];
+    for (let i = 0; i < count; i++) {
+        let drawnIndex = Math.floor(Math.random() * 100)
+        let drawnCard = drawPile[drawnIndex];
+        drawPile.splice(drawnIndex, 1);
+        drawnCards.push(drawnCard);
+    };
+    console.log(drawnCards);
 };
 
-
+setupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    initialiseGame();
+});
 
 function initialiseGame() {
     setupDiv.classList.remove("block");
     setupDiv.classList.add("hidden");
-    
 
-    const drawPile = [
+    drawPile = [
         ...stratagems,
         ...attacks,
         ...boosts,
         ...suddenEvents,
         ...clutter,
         ...sentiments
-    ]; // spread operator
+    ]; // spread operator. concats the arrays into one
     
     let playerOneNameInput = document.getElementById("player-one-name-input").value;
     let playerTwoNameInput = document.getElementById("player-two-name-input").value;
@@ -152,22 +169,19 @@ function initialiseGame() {
         document.getElementById("playfield-4").classList.remove("hidden");
     };
 
-    // console.log(player1); // Player { name: 'Alice', index: 0, points: 0, hand: [], clearedClutter: [], nextClutterMultiplier: 1, diceRoll: 0 }
-    // console.log(player2); // Player { name: 'Bob', index: 1, points: 0, hand: [], clearedClutter: [], nextClutterMultiplier: 1, diceRoll: 0 }
-
+    console.log(player1); // Player { name: 'Alice', index: 0, points: 0, hand: [], clearedClutter: [], nextClutterMultiplier: 1, diceRoll: 0 }
+    console.log(player2); // Player { name: 'Bob', index: 1, points: 0, hand: [], clearedClutter: [], nextClutterMultiplier: 1, diceRoll: 0 }
+    console.log(player3);
+    console.log(player4);
+    console.log(drawPile);
+    misc.updateStatusDiv("game state initialised!");
     // player1.rollDice();
     // console.log(`Player ${player1.name} rolled a ${player1.diceRoll}`); 
     return false;
 };
 
-setupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    initialiseGame();
-});
 
 
-
-// function drawCard
 
 
 // function clearSentiment(sentiment) {
