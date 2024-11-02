@@ -4,11 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../styles/output.css" rel="stylesheet">
+    <link rel="script" ">
+    <script src="../scripts/game.js" defer></script> 
     <title>game</title>
 </head>
 
-<body>
+<body class="bg-black text-white">
+    <h1 class="text-3xl text-center">clutter demo</h1>
+    <div id="setup-div" class="h-auto border-2 mb-4 block">
+        <p>note: leave 3rd and/or 4th inputs blank if playing with less than 4 players</p><br />
+        <form id="setup-form">
+            <label for="player-one-name-input">player 1 name: </label>
+            <input class="m-1 text-black" type="text" id="player-one-name-input" name="player-one-name-input"><br />
+            <label for="player-two-name-input">player 2 name: </label>
+            <input class="m-1 text-black" type="text" id="player-two-name-input" name="player-two-name-input"><br />
+            <label for="player-three-name-input">player 3 name: </label>
+            <input class="m-1 text-black" type="text" id="player-three-name-input" name="player-three-name-input"><br />
+            <label for="player-four-name-input">player 4 name: </label>
+            <input class="m-1 text-black" type="text" id="player-four-name-input" name="player-four-name-input"><br />
+            <input type="submit" value="initialise game!" class="bg-black m-1 p-1">
+        </form>
+    </div>
 
+
+    <div class="playfields h-60 border-2 hidden">
+        <p>player 1: <span id="player-one-name" class="hidden">null</span></p>
+    </div>
+
+    <div class="playfields h-60 border-2 hidden">
+        <p>player 2: <span id="player-two-name" class="hidden">null</span></p>
+    </div>
+
+    <div class="playfields h-60 border-2 hidden">
+        <p>player 3: <span id="player-three-name" class="hidden">null</span></p>
+    </div>
+
+    <div class="playfields h-60 border-2 hidden">
+        <p>player 4: <span id="player-four-name" class="hidden">null</span></p>
+    </div>
+    
     
 </body>
 </html>
